@@ -1,4 +1,6 @@
 'use client'
+
+import type { FindPlaceFromTextResponseData } from '@googlemaps/google-maps-services-js'
 import { FormEvent } from 'react'
 
 export default function NewRoutePage() {
@@ -14,12 +16,20 @@ export default function NewRoutePage() {
       fetch(`http://localhost:3000/places?text=${destination}`),
     ])
 
-    const [sourcePlace, destinationPlace] = await Promise.all([
-      sourceResponse.json(),
-      destinationResponse.json(),
-    ])
+    const [sourcePlace, destinationPlace]: FindPlaceFromTextResponseData[] =
+      await Promise.all([sourceResponse.json(), destinationResponse.json()])
 
-    console.log(sourcePlace, destinationPlace)
+    if (sourcePlace.status !== 'OK') {
+      console.error(sourcePlace.error_message)
+      alert('Não foi possível carregar a origem')
+      return
+    }
+
+    if (destinationPlace.status !== 'OK') {
+      console.error(sourcePlace.error_message)
+      alert('Não foi possível carregar o destino')
+      return
+    }
   }
 
   return (
