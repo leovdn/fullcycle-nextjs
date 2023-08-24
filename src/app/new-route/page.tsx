@@ -71,7 +71,7 @@ export default function NewRoutePage() {
   }
 
   async function createRoute() {
-    const startAddress = directionsData!.routes[0].legs[0].start_location
+    const startAddress = directionsData!.routes[0].legs[0].start_address
     const endAddress = directionsData!.routes[0].legs[0].end_address
 
     const response = await fetch('http://localhost:3000/routes', {
