@@ -24,7 +24,7 @@ export default function DriverPage() {
       .value
 
     const response = await fetch(`http://localhost:3000/routes/${routeId}`)
-    const route = await response.json()
+    const route: Route = await response.json()
 
     map?.removeAllRoutes()
 
@@ -40,6 +40,16 @@ export default function DriverPage() {
         position: route.directions.routes[0].legs[0].start_location,
       },
     })
+
+    const { steps } = route.directions.routes[0].legs[0]
+
+    for (const step of steps) {
+      await sleep(2000)
+      map?.moveCar(routeId, step.start_location)
+
+      await sleep(2000)
+      map?.moveCar(routeId, step.end_location)
+    }
   }
 
   return (
@@ -69,3 +79,5 @@ export default function DriverPage() {
     </div>
   )
 }
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
