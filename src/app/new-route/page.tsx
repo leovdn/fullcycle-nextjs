@@ -106,7 +106,7 @@ export default function NewRoutePage() {
 
   return (
     <Grid2 container sx={{ display: 'flex', flex: 1 }}>
-      <Grid2 xs={4} px={4}>
+      <Grid2 xs={4} p={3}>
         <Typography variant="h4">Nova rota</Typography>
 
         <form onSubmit={searchPlaces}>
