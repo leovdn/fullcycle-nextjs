@@ -7,6 +7,7 @@ import { useMap } from '../hooks/useMap'
 import { fetcher } from '../utils/http'
 import { Route } from '../utils/models'
 import { socket } from '../utils/socket-io'
+import { Button } from '@mui/material'
 
 export default function DriverPage() {
   const mapContainerRef = useRef<HTMLDivElement>(null)
@@ -86,6 +87,7 @@ export default function DriverPage() {
           <button type="submit" onClick={startRoute}>
             Iniciar Viagem
           </button>
+          <Button>Teste</Button>
         </div>
       </aside>
 

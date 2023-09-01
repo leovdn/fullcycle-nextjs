@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './global.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import ThemeRegistry from './components/ThemeRegistry/ThemeRegistry'
 
 export const metadata: Metadata = {
   title: 'Imersão Fullcycle - Sistema de rastreio de veículos',
@@ -16,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <ThemeRegistry>{children}</ThemeRegistry>
+      </body>
     </html>
   )
 }
