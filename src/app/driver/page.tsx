@@ -9,6 +9,7 @@ import { Route } from '../utils/models'
 import { socket } from '../utils/socket-io'
 import { Button, NativeSelect, Typography } from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
+import { RouteSelect } from '../components/RouteSelect'
 
 export default function DriverPage() {
   const mapContainerRef = useRef<HTMLDivElement>(null)
@@ -78,14 +79,7 @@ export default function DriverPage() {
         <Typography variant="h4">Minha viagem</Typography>
 
         <div>
-          <NativeSelect id="route" sx={{ mb: 1 }}>
-            {isLoading && <option>carregando rotas...</option>}
-            {routes?.map((route) => (
-              <option value={route.id} key={route.id}>
-                {route.name}
-              </option>
-            ))}
-          </NativeSelect>
+          <RouteSelect id="route" />
 
           <Button
             variant="contained"
